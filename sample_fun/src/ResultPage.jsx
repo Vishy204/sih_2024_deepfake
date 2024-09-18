@@ -39,7 +39,8 @@ function ResultPage() {
         total_blinks,
         irregular_blinks,
         full_prediction_string,
-        transcribed_text
+        transcribed_text,
+        similarity,micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64
     } = location.state || { 
         result: null, 
         randomArray: [], 
@@ -51,7 +52,8 @@ function ResultPage() {
         total_blinks: null, 
         irregular_blinks: null,
         full_prediction_string: null,
-        transcribed_text: null
+        transcribed_text: null,
+        similarity:null,micro:null,freq:null,gaze:null,lip:null,mfcc1_64:null,mfcc2_64:null,mfcc3_64:null
     };
 
     // Debugging - log the result, randomArray, metadata, and images to see what is being passed
@@ -93,6 +95,11 @@ function ResultPage() {
             <p>Model Predicted String: {full_prediction_string ? full_prediction_string : 'No data available'}</p>
             <p>Frequency Predicted Value: {prediction ? prediction : 'No data available'}</p>
             <p>Transcribed Text: {transcribed_text ? transcribed_text : 'No transcribed text available'}</p>
+            <p>Sync Score: {similarity ? similarity: 'No transcribed text available'}</p>
+            <p>Lipnet Conclusion {lip ? lip: 'No transcribed text available'}</p>
+            <p>Freqnet conclusion: {freq ? freq: 'No transcribed text available'}</p>
+            <p>Microexpresion conclusion:  {micro ? micro: 'No transcribed text available'}</p>
+            <p>GazeTracker: {gaze ? gaze: 'No transcribed text available'}</p>
 
             {/* Show the frame image if available */}
             {frame_base64 && (
@@ -107,6 +114,24 @@ function ResultPage() {
                 <div>
                     <h2>DCT Plot</h2>
                     <img src={`data:image/png;base64,${dct_base64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
+                </div>
+            )}
+            {mfcc1_64 && (
+                <div>
+                    <h2>DCT Plot</h2>
+                    <img src={`data:image/png;base64,${mfcc1_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
+                </div>
+            )}
+            {mfcc2_64 && (
+                <div>
+                    <h2>DCT Plot</h2>
+                    <img src={`data:image/png;base64,${mfcc2_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
+                </div>
+            )}
+            {mfcc3_64 && (
+                <div>
+                    <h2>DCT Plot</h2>
+                    <img src={`data:image/png;base64,${mfcc3_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
             )}
 
