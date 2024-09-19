@@ -12,7 +12,7 @@ TrueSight employs a diverse set of AI models and techniques to ensure robust and
 - **LipNet:** LipNet is employed to perform lip reading, analyzing the synchronization between spoken words and lip movements. By comparing audio and visual cues, it identifies mismatches that may occur in deepfake videos where voice and lip movements are not aligned.
   
 <div align="center">
-  <img src="./images/Lipnet.png" alt="Alt text" width="800" height="375">
+  <img src="./images/Lipnet.png" alt="Alt text" width="800" height="365">
   <p align="center">
     <i>Figure 1: Custom-built Lipnet Architecture.</i>
   </p>
@@ -21,8 +21,17 @@ TrueSight employs a diverse set of AI models and techniques to ensure robust and
 - **MesoNet:** MesoNet is specifically designed for deepfake detection, focusing on mesoscopic properties of images. It analyzes subtle visual patterns that are typically invisible to the human eye but indicate tampered media.
     
 <div align="center">
-  <img src="./images/Mesonet.png" alt="Alt text" width="600" height="350">
+  <img src="./images/Mesonet.png" alt="Alt text" width="650" height="375">
   <p align="center">
     <i>Figure 2: Custom-built Mesonet Architecture.</i>
+  </p>
+</div>
+
+- **Gaze Tracker:** This model monitors the subject's eye movements, tracking irregularities in blinking patterns and gaze direction. Since deepfake models often struggle with replicating natural eye movements, the gaze tracker is an effective tool in detecting anomalies.
+    
+<div align="center">
+  <img src="./images/Gaze tracker.png" alt="Alt text" width="600" height="350">
+  <p align="center">
+    <i>Figure 3:  Gaze-tracker Architecture.</i>
   </p>
 </div>
