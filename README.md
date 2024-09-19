@@ -35,3 +35,16 @@ TrueSight employs a diverse set of AI models and techniques to ensure robust and
     <i>Figure 3:  Gaze-tracker Architecture.</i>
   </p>
 </div>
+
+- **MFCC (Mel-frequency cepstral coefficients):** For audio analysis, TrueSight uses MFCC to detect deepfake audio by analyzing speech patterns, pitch, and frequency components. It identifies manipulated or synthetic audio elements that don't align with natural voice characteristics.
+
+<div align="center">
+  <img src="./images/MFCC1.1.png" alt="Image 1" width="400" height="250" style="margin-right: 10px;">
+  <img src="./images/MFCC1.2.png" alt="Image 2" width="400" height="250" style="margin-right: 10px;">
+  <img src="./images/MFCC1.3.png" alt="Image 3" width="400" height="250">
+</div>
+<p align="center">
+  <i>Figure 4: (Top Left to Right) Audio Sprectrogram, Audio Mel Spectrogram,(Bottom) Audio Mel-Frequency Cepstral Coefficients.</i>
+</p>
+
+- **FrequencyNet:** This model is used to analyze the frequency domain of the video, detecting anomalies in how frequencies are distributed in the image or audio content. FrequencyNet can capture subtle distortions and artifacts introduced during deepfake generation.
