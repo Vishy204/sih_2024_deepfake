@@ -109,22 +109,24 @@ function UploadPage() {
 
           
         </div>
+        <div className='pb-12'>
 
-            <h1>Upload Audio (.wav) or Video for Analysis</h1>
+            <h1 >Upload Audio (.wav) or Video for Analysis</h1>
             
             {/* Video Upload */}
-            <div>
+            <div className="my-6" > 
                 <label>Upload Video:</label>
-                <input type="file" onChange={handleVideoFileChange} accept="video/*" />
+                <input type="file" onChange={handleVideoFileChange} accept="video/*" className="" />
             </div>
 
             {/* Audio Upload */}
-            <div>
+            <div className="mb-6">
                 <label>Upload Audio (.wav):</label>
                 <input type="file" onChange={handleAudioFileChange} accept="audio/wav" />
             </div>
 
-            <button onClick={handleUpload}>Upload and Process</button>
+            <button onClick={handleUpload} className="p-4 bg-blue-700 hover:bg-yellow-500 border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#525252] hover:shadow-[-10px_10px_0_0_#000000]">Upload and Process</button>
+            </div>
 
         </div>
     );
