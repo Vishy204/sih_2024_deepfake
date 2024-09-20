@@ -101,7 +101,7 @@ function ResultPage() {
   
     // Prepare data for the chart
     const data = {
-        labels: randomArray.map((_, index) => Point ${index + 1}),  // Labels for each point on the x-axis
+        labels: randomArray.map((_, index) => `Point ${index + 1}`),  // Labels for each point on the x-axis
         datasets: [
             {
                 label: 'Predictions',
@@ -164,7 +164,7 @@ function ResultPage() {
                   <div className="bg-red-500 w-[48%] p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000]" data-aos="zoom-in">
                     <p className="text-[6vh] font-extrabold">FREQNET</p>
                       <span className="underline pr-4">DCT Plot</span>
-                      <img src={data:image/png;base64,${dct_base64}} alt="DCT Plot" className="h-[70vh] w-full" />
+                      <img src={`data:image/png;base64,${dct_base64}`} alt="DCT Plot" className="h-[70vh] w-full" />
   
                       {freq !== undefined && freq !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500'><span className="underline">Conclusion: </span>{freq}</p>}
                   </div>
@@ -178,7 +178,7 @@ function ResultPage() {
                       {total_blinks !== undefined && <p><span className="underline pr-4">Total Blinks: </span>{total_blinks}</p>}
                       {irregular_blinks !== undefined && <p><span className="underline pr-4">Irregular Blinks: </span>{irregular_blinks}</p>}
                       <h2><span className="underline pr-4">Eye Tracker Plot</span></h2>
-                      <img src={data:image/png;base64,${image_base64}} alt="Eye Tracker Plot" className="w-full h-[60vh]" />
+                      <img src={`data:image/png;base64,${image_base64}`} alt="Eye Tracker Plot" className="w-full h-[60vh]" />
   
                       {gaze !== undefined && gaze !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500'><span className="underline">Conclusion:</span>{gaze}</p>}
                   </div>
@@ -188,19 +188,19 @@ function ResultPage() {
           {mfcc1_64 && (
               <div className="text-center mt-4 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
                 
-                  <img src={data:image/png;base64,${mfcc1_64}} alt="MFCC Plot 1" className="w-[80vw] h-[50vh]" />
+                  <img src={`data:image/png;base64,${mfcc1_64}`} alt="MFCC Plot 1" className="w-[80vw] h-[50vh]" />
               </div>
           )}
           {mfcc2_64 && (
               <div className="text-center mt-12 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
             
-                  <img src={data:image/png;base64,${mfcc2_64}} alt="MFCC Plot 2" className="w-[80vw] h-[50vh]" />
+                  <img src={`data:image/png;base64,${mfcc2_64}`} alt="MFCC Plot 2" className="w-[80vw] h-[50vh]" />
               </div>
           )}
           {mfcc3_64 && (
               <div className="text-center mt-12 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
                  
-                  <img src={data:image/png;base64,${mfcc3_64}} alt="MFCC Plot 3" className="w-[80vw] h-[50vh]" />
+                  <img src={`data:image/png;base64,${mfcc3_64}`} alt="MFCC Plot 3" className="w-[80vw] h-[50vh]" />
                   
               </div>
           )}
