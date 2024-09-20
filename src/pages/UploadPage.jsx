@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {Button} from "@mui/material"
-import Navbar from '../components/Navbar';
 
 function UploadPage() {
     const [videoFile, setVideoFile] = useState(null);
@@ -41,7 +40,7 @@ function UploadPage() {
                 },
             });
 
-            const { result, random_array, metadata, prediction, frame_base64, dct_base64, image_base64, total_blinks, irregular_blinks, full_prediction_string, transcribed_text,similarity,micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64 } = response.data;
+            const { result, random_array, metadata, prediction, frame_base64, dct_base64, image_base64, total_blinks, irregular_blinks, full_prediction_string, transcribed_text,similarity,micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64,final_result } = response.data;
 
             // Navigate to ResultPage with the result, randomArray, metadata, and encoded images
             navigate('/result', { 
@@ -58,7 +57,7 @@ function UploadPage() {
                     full_prediction_string,
                     transcribed_text,
                     similarity,
-                    micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64// Add transcribed_text
+                    micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64,final_result// Add transcribed_text
                 } 
             });
         } catch (error) {
@@ -69,19 +68,19 @@ function UploadPage() {
     return (
       
         <div className="App about">
-          <Navbar />
+
 <div className=" flex flex-col pt-[15vh] text-white w-full ">
           <h1 className="text-[6vh] font-bold my-6 font-noto flex pl-24">
             Welcome to TrueSight – Your Reliable Deepfake Detection Tool
           </h1>
           <div className="flex justify-center border-b-8 border-white py-8">
-          <p className="text-[4vh] mb-6 font-inria inline w-[60vw]  px-8 text-left">
+          <p className="text-[4vh] mb-6 font-inria inline w-[50vw]  pr-4">
             In an era where media manipulation is becoming increasingly sophisticated, detecting the
             authenticity of video and audio content is more important than ever. At TrueSight, we
             leverage cutting-edge AI technology to help you identify whether a file is genuine or
             manipulated, specifically targeting deepfake content.
           </p>
-          <img src="/upload.jpeg" className="w-[30vw] h-[40vh] inline border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#000000]"/>
+          <img src="/upload.jpeg" className="w-[30vw] h-[40vh] inline "/>
           </div>
           <h2 className="text-[6vh] font-semibold my-8 font-noto flex items-center pl-24 ">How It Works:</h2>
     <ul className="custom-square-list">
@@ -110,24 +109,27 @@ function UploadPage() {
 
           
         </div>
-        <div className='pb-12'>
+        <div className='pb-12 flex flex-col items-center justify-center text-center'>
+  
+  <h1 className='text-white text-[3vh]'>Upload Audio (.wav) or Video for Analysis</h1>
+  
+  {/* Video Upload */}
+  <div className="my-6 text-white text-[3vh]"> 
+    <label>Upload Video:</label>
+    <input type="file" onChange={handleVideoFileChange} accept="video/*" className="" />
+  </div>
 
-            <h1 className="text-white text-[4vh] font-inria">Upload Audio (.wav) or Video for Analysis</h1>
-            
-            {/* Video Upload */}
-            <div className="my-6" > 
-                <label className="text-white font-inria text-[3vh]">Upload Video:</label>
-                <input type="file" onChange={handleVideoFileChange} accept="video/*" className="px-3 text-white font-inria" />
-            </div>
+  {/* Audio Upload */}
+  <div className="mb-6 text-white text-[3vh]">
+    <label>Upload Audio (.wav):</label>
+    <input type="file" onChange={handleAudioFileChange} accept="audio/wav" />
+  </div>
 
-            {/* Audio Upload */}
-            <div className="mb-6">
-                <label className="text-white font-inria text-[3vh]">Upload Audio (.wav):</label>
-                <input type="file" onChange={handleAudioFileChange} accept="audio/wav" className="text-white font-inria px-3" />
-            </div>
+  <button onClick={handleUpload} className="p-4 bg-red-500 hover:bg-yellow-500 border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#525252] hover:shadow-[-10px_10px_0_0_#000000]">
+    Upload and Process
+  </button>
+</div>
 
-            <button onClick={handleUpload} className="p-4 bg-white hover:bg-yellow-500 border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#525252] hover:shadow-[-10px_10px_0_0_#000000]">Upload and Process</button>
-            </div>
 
         </div>
     );

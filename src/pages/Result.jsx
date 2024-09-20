@@ -52,7 +52,8 @@ function ResultPage() {
         lip,
         mfcc1_64,
         mfcc2_64,
-        mfcc3_64
+        mfcc3_64,
+        final_result
     } = location.state || { 
         result: null, 
         randomArray: [], 
@@ -72,7 +73,8 @@ function ResultPage() {
         lip: null,
         mfcc1_64: null,
         mfcc2_64: null,
-        mfcc3_64: null
+        mfcc3_64: null,
+        final_result:null
     };
 
     // Debugging - log the result, randomArray, metadata, and images to see what is being passed
@@ -99,14 +101,15 @@ function ResultPage() {
   
     // Prepare data for the chart
     const data = {
-        labels: randomArray.map((_, index) => `Point ${index + 1}`),  // Labels for each point on the x-axis
+        labels: randomArray.map((_, index) => Point ${index + 1}),  // Labels for each point on the x-axis
         datasets: [
             {
                 label: 'Predictions',
                 data: randomArray,  // Data to plot on the chart
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'white',
+                borderColor: 'white',
                 borderWidth: 1,
+                color: 'white',
             },
         ],
     };
@@ -120,85 +123,111 @@ function ResultPage() {
   
       return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-    
+
 
     return (
-      <div className="about text-white px-10 w-[100vw] h-[300vh] flex flex-col items-center justify-center">
-        <div className="w-[95vw] h-[250vh] border-black border-4 shadow-[-10px_10px_0_0_#000000] flex flex-col items-center">
+      <div className="about text-white px-10 w-[100vw] h-auto flex flex-col items-center justify-center">
+        <div className="w-[95vw] h-auto border-black my-12 border-4 shadow-[-10px_10px_0_0_#000000] flex flex-col items-center">
         <div className="bg-white h-[2vh] lg:h-[8vh] w-full flex items-center border-black border-b-2 pl-[0.5vw]">
           <img src="/yellow-circles.svg" alt="Yellow Circles" className="h-[1vh] lg:h-[5vh]" />
         </div>
-          <p className="text-center text-[7vh] my-4 font-noto [text-shadow:10px_10px_20px_var(--tw-shadow-color)] shadow-[#6a3b6e]">Analysis Results</p>
-          
-          {metadata && <p className="text-center">Meta Data: {metadata}</p>}
-  
-          {full_prediction_string && full_prediction_string !== 0 &&  
-          <div className="bg-red-500 my-4 w-[60vw] text-center border-black border-4 shadow-[-10px_10px_0_0_#000000]" data-aos="zoom-in">
-              { <p>Model Predicted String: {full_prediction_string}</p>}
-              {prediction !== undefined && prediction !== 0 && <p>Frequency Predicted Value: {prediction}</p>}
-              {transcribed_text && transcribed_text !== 0 && <p>Transcribed Text: {transcribed_text}</p>}
-              {similarity !== undefined && similarity !== 0 && <p>Sync Score: {similarity}</p>}
-              {lip !== undefined && lip !== 0 && <p>Lipnet Conclusion: {lip}</p>}
-          </div>
-}
+        <p className="text-center text-[7vh] my-4 font-noto [text-shadow:-10px_10px_10px_var(--tw-shadow-color)] shadow-[#6a3b6e]">
+  Analysis Results
+</p>
+
+{metadata && (
+  <div className="text-[4vh] bg-red-500 border-black border-4 shadow-[-10px_10px_0_0_#000000] my-4 w-[80vw] text-center" data-aos="zoom-in">
+    {/* Split the metadata string by '\n' and map each part to a <p> element */}
+    <p className="text-[6vh] font-extrabold">METADATA</p>
+    {metadata.split('\n').map((line, index) => (
+      <p key={index}>{line}</p>
+    ))}
+  </div>
+)}
+
+{full_prediction_string && full_prediction_string !== 0 && (
+  <div className="bg-red-500 my-4 w-[80vw] text-center border-black border-4 shadow-[-10px_10px_0_0_#000000] text-[4vh]" data-aos="zoom-in">
+    <p className="text-[6vh] font-extrabold">LIPNET</p>
+    <p> <span className="underline pr-4">Lip Reading Transcript: </span>{full_prediction_string}</p>
+   
+    {transcribed_text && transcribed_text !== 0 && <p><span className="underline pr-4">Transcribed Text: </span>{transcribed_text}</p>}
+    {similarity !== undefined&& <p><span className="underline pr-4">Lip-audio Consistency Score:</span> {similarity}</p>}
+    {lip !== undefined && lip !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500 mt-4 border-t-4 border-black'><span className="underline">Conclusion:</span> {lip}</p>}
+  </div>
+)}
+
   
           {/* Container for side-by-side content */}
-          <div className="flex w-[60vw] justify-between my-8 " >
+          <div className="flex w-[80vw] justify-between my-8 text-[4vh]" >
               {/* DCT Plot */}
               {frame_base64 && (
                   <div className="bg-red-500 w-[48%] p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000]" data-aos="zoom-in">
-                      <h2>Frame Image (Predicted Deepfake Frame)</h2>
-                      <h2>DCT Plot</h2>
-                      <img src={`data:image/png;base64,${dct_base64}`} alt="DCT Plot" className="h-[40vh] w-full" />
+                    <p className="text-[6vh] font-extrabold">FREQNET</p>
+                      <span className="underline pr-4">DCT Plot</span>
+                      <img src={data:image/png;base64,${dct_base64}} alt="DCT Plot" className="h-[70vh] w-full" />
   
-                      {freq !== undefined && freq !== 0 && <p>Freqnet Conclusion: {freq}</p>}
+                      {freq !== undefined && freq !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500'><span className="underline">Conclusion: </span>{freq}</p>}
                   </div>
               )}
   
               {/* Eye Tracker Plot */}
               {image_base64 && (
                   <div className="bg-red-500 w-[48%] p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000] " data-aos="zoom-in">
-                      {total_blinks !== undefined && <p>Total Blinks: {total_blinks}</p>}
-                      {irregular_blinks !== undefined && <p>Irregular Blinks: {irregular_blinks}</p>}
-                      <h2>Eye Tracker Plot</h2>
-                      <img src={`data:image/png;base64,${image_base64}`} alt="Eye Tracker Plot" className="w-full" />
+                    <p className="text-[6vh] font-extrabold">GAZE TRACKER</p>
+
+                      {total_blinks !== undefined && <p><span className="underline pr-4">Total Blinks: </span>{total_blinks}</p>}
+                      {irregular_blinks !== undefined && <p><span className="underline pr-4">Irregular Blinks: </span>{irregular_blinks}</p>}
+                      <h2><span className="underline pr-4">Eye Tracker Plot</span></h2>
+                      <img src={data:image/png;base64,${image_base64}} alt="Eye Tracker Plot" className="w-full h-[60vh]" />
   
-                      {gaze !== undefined && gaze !== 0 && <p>GazeTracker Conclusion: {gaze}</p>}
+                      {gaze !== undefined && gaze !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500'><span className="underline">Conclusion:</span>{gaze}</p>}
                   </div>
               )}
           </div>
   
           {mfcc1_64 && (
               <div className="text-center mt-4 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
-                {result && <p>Prediction Result: {result}</p>}
-                  <h2>MFCC Plot 1</h2>
-                  <img src={`data:image/png;base64,${mfcc1_64}`} alt="MFCC Plot 1" className="w-[70vw] h-[50vh]" />
+                
+                  <img src={data:image/png;base64,${mfcc1_64}} alt="MFCC Plot 1" className="w-[80vw] h-[50vh]" />
               </div>
           )}
           {mfcc2_64 && (
               <div className="text-center mt-12 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
-                  <h2>MFCC Plot 2</h2>
-                  <img src={`data:image/png;base64,${mfcc2_64}`} alt="MFCC Plot 2" className="w-[70vw] h-[50vh]" />
+            
+                  <img src={data:image/png;base64,${mfcc2_64}} alt="MFCC Plot 2" className="w-[80vw] h-[50vh]" />
               </div>
           )}
           {mfcc3_64 && (
               <div className="text-center mt-12 border-black border-4 shadow-[-20px_20px_0_0_#000000]" data-aos="zoom-in">
-                  <h2>MFCC Plot 3</h2>
-                  <img src={`data:image/png;base64,${mfcc3_64}`} alt="MFCC Plot 3" className="w-[70vw] h-[50vh]" />
+                 
+                  <img src={data:image/png;base64,${mfcc3_64}} alt="MFCC Plot 3" className="w-[80vw] h-[50vh]" />
                   
               </div>
           )}
   
           {randomArray.length > 0 && (
-              <div className="bg-red-500 w-[60vw] p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000]" data-aos="zoom-in">
-                  <h2>Prediction Graph</h2>
+              <div className="bg-red-500 w-[80vw] text-[4vh] p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000]" data-aos="zoom-in">
+                <p className="text-[6vh] font-extrabold">MESO NET</p>
+                  <h2><span className="underline pr-4 ">Prediction Graph</span></h2>
                   <Line data={data} />
-                  {result && <p>Prediction Result: {result}</p>}
-                  {micro !== undefined && micro !== 0 && <p>Microexpression Conclusion: {micro}</p>}
+                  {result && <p><span className="underline pr-4">MicroExpression Analysis Graph: </span>{result}</p>}
+                  {micro !== undefined && micro !== 0 && <p className='mt-4 border-t-4 border-black bg-yellow-400 py-4 text-gray-500'><span className="underline">Conclusion: </span>{micro}</p>}
+              </div>
+          )}
+
+          {final_result && (
+            <div className="bg-yellow-400 w-[80vw] my-10 p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000] text-[5vh] text-gray-500" data-aos="zoom-in">
+                <p>{final_result}</p>
+              </div>
+          )}
+
+{result && (
+            <div className="bg-yellow-400 w-[80vw] my-10 p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000] text-[5vh] text-gray-500" data-aos="zoom-in">
+                <p>{result}</p>
               </div>
           )}
   
-          <button onClick={() => navigate('/')} className="my-[10vh] bg-blue-500 text-white py-2 px-4 rounded hover:underline w-[20vw] hover:bg-yellow-500 border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#525252] hover:shadow-[-10px_10px_0_0_#000000]">
+          <button onClick={() => navigate('/')} className="my-[10vh] bg-red-500 text-white py-2 px-4 rounded hover:underline w-[20vw] hover:bg-yellow-500 border-[#525252] hover:border-black border-4 shadow-[-10px_10px_0_0_#525252] hover:shadow-[-10px_10px_0_0_#000000]">
               Go Back
           </button>
           </div>
