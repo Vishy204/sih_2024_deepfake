@@ -9,7 +9,7 @@ export default function Navbar({ loginAction }) {
   };
 
   return (
-    <nav className="absolute flex items-center justify-center bg-[#26586c] border-b-2 border-black h-[8vh] md:h-[12vh] px-2 md:px-10 w-full font-protest z-[1000]">
+    <nav className="absolute flex items-center justify-center bg-[#15F5BA] border-b-2 border-black h-[8vh] md:h-[12vh] px-2 md:px-10 w-full font-protest z-[1000]">
       {/* Wrapper to center the logo and menu items */}
       <div className="flex w-full justify-between items-center">
         {/* Logo */}
@@ -27,7 +27,7 @@ export default function Navbar({ loginAction }) {
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center justify-center gap-12 text-white font-bold text-4xl tracking-wider">
           <Link to="/">
-            <li className="hover:underline text-white">Home</li>
+            <li className="hover:underline text-[#F0F3FF]">Home</li>
           </Link>
           <li className="hover:underline">
             <a href="/about">About</a>
