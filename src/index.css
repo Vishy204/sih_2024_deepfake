@@ -9,7 +9,8 @@
 
 
 .about {
-	background: linear-gradient(-45deg, rgb(9, 9, 78), cyan, blue);
+	/* background: linear-gradient(-45deg, rgb(9, 9, 78), cyan, blue); */
+	background: linear-gradient(-45deg, cyan, rgb(43, 88, 118), #836FFF, #5547a3, #2b2161 );
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
   }
