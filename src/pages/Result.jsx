@@ -53,7 +53,7 @@ function ResultPage() {
         mfcc1_64,
         mfcc2_64,
         mfcc3_64,
-        final_result
+        final_result,result1
     } = location.state || { 
         result: null, 
         randomArray: [], 
@@ -74,7 +74,8 @@ function ResultPage() {
         mfcc1_64: null,
         mfcc2_64: null,
         mfcc3_64: null,
-        final_result:null
+        final_result:null,
+        result1:null
     };
 
     // Debugging - log the result, randomArray, metadata, and images to see what is being passed
@@ -221,9 +222,9 @@ function ResultPage() {
               </div>
           )}
 
-{result && (
+{result1 && (
             <div className="bg-yellow-400 w-[80vw] my-10 p-4 text-center border-black border-4 shadow-[-10px_10px_0_0_#000000] text-[5vh] text-gray-500" data-aos="zoom-in">
-                <p>{result}</p>
+                <p>{result1}</p>
               </div>
           )}
   
