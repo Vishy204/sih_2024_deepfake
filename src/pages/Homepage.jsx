@@ -6,7 +6,7 @@ import clock from "../assets/clock.png";
 import monitor from "../assets/monitor.png";
 import dotGrid from "../assets/dotGrid.png";
 import stats from "../assets/stats.png";
-import Navbar from "../components/Navbar";
+import {Navbar} from "../components/Navbar";
 import DropDown from "../components/DropDown";
 
 // import ImpCard from "../components/ImpCard";
@@ -16,7 +16,7 @@ export function Homepage() {
     <div>
       <Navbar />
       <div className="flex flex-col w-full hero-section h-50 ">
-        <img alt="" src={bannerImg} className="self-center object-cover " />
+        <img alt="..." src={bannerImg} className="self-center object-cover w-full" />
         <div className="flex flex-col items-center justify-center w-full sub-hero-section ">
           <p className="text-[#FFFFFF] text-4xl my-2 outline-white">
             Master Productivity
@@ -26,7 +26,7 @@ export function Homepage() {
           </p>
           <p className="text-[#70B5ED] text-xs my-2 flex">
             <div className="flex items-center justify-center flex-shrink-0">
-              <img alt="" src={arrow1} className="w-8 mx-2 " />
+              <img alt="..." src={arrow1} className="w-8 mx-2 " />
             </div>{" "}
             Conquer Distraction
           </p>
@@ -39,8 +39,8 @@ export function Homepage() {
             className="container  bg-[#111729] flex flex-shrink-0 items-center justify-center  "
           >
             <div className="relative w-full h-full mx-2 ml-10 psuedoimage">
-              <img alt="" src={monitor} className="absolute top-0 h-40 start-0 " />
-              <img alt="" src={dotGrid} className="absolute w-20 -left-5" />
+              <img alt="..." src={monitor} className="absolute top-0 h-40 start-0 " />
+              <img alt="..." src={dotGrid} className="absolute w-20 -left-5" />
             </div>
           </div>
 
@@ -60,8 +60,8 @@ export function Homepage() {
             flex items-center justify-center  "
           >
             <div className="relative w-full h-full ml-10 psuedoimage">
-              <img alt="" src={stats} className="absolute top-0 h-40 start-0 " />
-              <img alt="" src={dotGrid} className="absolute w-20 -left-5" />
+              <img alt="..." src={stats} className="absolute top-0 h-40 start-0 " />
+              <img alt="..." src={dotGrid} className="absolute w-20 -left-5" />
             </div>
           </div>
         </div>
@@ -71,8 +71,8 @@ export function Homepage() {
             className="container flex-shrink-0 bg-[#111729] flex items-center justify-center mx-2 "
           >
             <div className="relative w-full h-full ml-10 psuedoimage">
-              <img alt="" src={clock} className="absolute top-0 h-40 start-0 " />
-              <img alt="" src={dotGrid} className="absolute w-20 -left-5" />
+              <img alt="..." src={clock} className="absolute top-0 h-40 start-0 " />
+              <img alt="..." src={dotGrid} className="absolute w-20 -left-5" />
             </div>
           </div>
 
@@ -86,7 +86,7 @@ export function Homepage() {
       <div className="flex justify-center w-full mt-32 h-fit outline-white ">
         <DropDown />
         <div className="w-32">
-          <img alt="" src={stayFocus} className="w-30" />
+          <img alt="..." src={stayFocus} className="w-30" />
         </div>
       </div>
     </div>
