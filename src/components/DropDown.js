@@ -18,11 +18,11 @@ export default function AccordionUsage() {
             color: "#FFFFFF",
           }}
         >
-          HOW TO STAY FOCUSED WHILE WORK
+          Exposing the Fake, Revealing the Truth
         </AccordionSummary>
         <AccordionDetails className="bg-[#0D0F15] text-[#BAC0C5]">
-          Work for 25 minutes, then take a 5-minute break. This helps maintain
-          focus and prevents burnout.
+          Empower your digital integrity with our advanced deepfake detection
+          system for both video and audio. Stay ahead of misinformation.
         </AccordionDetails>
       </Accordion>
       <Accordion className="bg-[#1E1E1E]">
@@ -36,12 +36,10 @@ export default function AccordionUsage() {
             color: "#FFFFFF",
           }}
         >
-          HOW TO AVOID DISTRACTIONS
+          Unmasking Deepfakes, One Frame at a Time
         </AccordionSummary>
         <AccordionDetails className="bg-[#0D0F15] text-[#BAC0C5]">
-          Limit Digital Distractions: Use apps that block distracting websites
-          and notifications during focus periods. Consider silencing your phone
-          or using “Do Not Disturb” mode to minimize interruptions.
+        Ensure authenticity with our cutting-edge video and audio analysis that separates reality from deception.
         </AccordionDetails>
       </Accordion>
       <Accordion className="bg-[#1E1E1E]">
@@ -55,12 +53,10 @@ export default function AccordionUsage() {
             color: "#FFFFFF",
           }}
         >
-          HOW TO BE MORE PRODUCTIVE
+          Trust What You See and Hear
         </AccordionSummary>
         <AccordionDetails className="bg-[#0D0F15] text-[#BAC0C5]">
-          Set Clear Goals: Define specific, achievable goals for each day or
-          week. Use the SMART criteria (Specific, Measurable, Achievable,
-          Relevant, Time-bound) to guide your goal-setting
+        Our technology scrutinizes videos and audio to give you confidence in what’s real and what’s not. Your truth matters.
         </AccordionDetails>
       </Accordion>
       <Accordion className="bg-[#1E1E1E]">
@@ -74,18 +70,12 @@ export default function AccordionUsage() {
             color: "#FFFFFF",
           }}
         >
-          WAYS TO MAINTAIN A HEALTHY LIFESTYLE
+          Detect Deepfakes, Protect Authenticity
         </AccordionSummary>
         <AccordionDetails className="bg-[#0D0F15] text-[#BAC0C5]">
-          Eat Whole Foods: Focus on fruits, vegetables, whole grains, lean
-          proteins, and healthy fats. Limit processed foods, added sugars, and
-          high-sodium snacks. Stay Hydrated: Drink plenty of water throughout
-          the day, aiming for about 8 glasses (2 liters) or more if you’re
-          active.
+        Combining video and audio verification, we help safeguard your content from deepfake manipulation.
         </AccordionDetails>
       </Accordion>
-      
-
     </div>
   );
 }
