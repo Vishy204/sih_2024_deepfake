@@ -1,99 +1,45 @@
 import React from 'react';
-import {Navbar} from "../components/Navbar";
+import { Navbar } from "../components/Navbar";
+import Footer from '../components/Footer';
 import "../index.css";
 
 const About = () => {
-  const info = [
-    {
-      head: "What are Mel-Frequency Cepstral Coefficients (MFCC), and how are they applied in audio and video processing?",
-      info: (
-        <>Mel-frequency cepstral coefficients (MFCC) are widely used in speech and audio processing to
-        represent the short-term power spectrum of a sound signal. This is crucial for analyzing voice
-        patterns in speech processing. In deepfake detection, they help identify discrepancies in audio by
-        capturing subtle inconsistencies in speech characteristics in manipulated audio.</>
-      ),
-    },
-    {
-      head: "How does a digital forensics-based model detect deepfakes?",
-      info: (
-        <>This model performs a digital forensic analysis by examining various aspects of a video to detect
-        potential manipulation. It inspects the metadata for traces of editing software or unusual codecs,
-        analyzes frame consistency to identify unnatural transitions, checks facial landmarks for limited or
-        abnormal movements, and scrutinizes compression artifacts for irregular patterns. These combined
-        techniques allow the model to effectively assess whether a video is likely to be a deepfake.</>
-      ),
-    },
-    {
-      head: "How does LipNet work, and what role does it play in deepfake detection?",
-      info: (
-        <>LipNet is a deep learning model designed to read lips by analyzing video frames of a speaker's
-        mouth movements. It captures the temporal dynamics of lip motion to predict spoken words without
-        relying on audio input. In the context of deepfake detection, LipNet can be used to detect
-        discrepancies between visual lip movements and the corresponding audio. Since deepfakes often
-        have subtle misalignments between speech and lip movement, LipNet can help identify these
-        inconsistencies, making it a powerful tool in detecting video-based manipulation.</>
-      ),
-    },
-    {
-      head: "What is MesoNet, and how does it contribute to identifying manipulated facial features in videos?",
-      info: (
-        <>MesoNet is a deep learning architecture specifically designed for deepfake detection, focusing on
-        identifying manipulated facial features in videos. It analyzes mesoscopic properties—mid-level
-        patterns in facial images that are altered during the creation of deepfakes. By detecting subtle
-        artifacts and distortions introduced by deepfake generation methods, MesoNet can differentiate
-        between real and fake faces.</>
-      ),
-    },
-    {
-      head: "How does gaze tracking improve deepfake detection?",
-      info: (
-        <>Gaze tracking is a technique that monitors eye movements to detect irregularities, such as abnormal
-        blinking intervals or unusual blink counts, which are often signs of deepfake manipulations. By
-        calculating the eye aspect ratio (EAR), these irregularities can be quantified to identify mismatches
-        between expected and observed blink patterns, thus helping in detecting deepfakes.</>
-      ),
-    },
-  ];
-
-  const getItems = () => {
-    return info;
-  };
-
   return (
-    <div className="flex flex-col w-full h-full overflow-hidden about">
+    <div className="flex flex-col w-full h-full overflow-hidden about" style={{ backgroundColor: '#111729' }}>
       <Navbar />
 
-      <div className="flex flex-col items-center justify-center w-full pt-16 border-t-8 border-b-8 border-white h-1/5 font-protest">
-        <h1 className="text-white text-[12vh]">About Us</h1>
+      <div className="flex flex-col items-center justify-center w-full pt-16 border-t-8 border-b-8 border-[#70B5ED] h-1/5 font-protest">
+        <h1 className="text-[#70B5ED] text-[12vh]">About Us</h1>
       </div>
 
       <div className="flex flex-col items-center w-full py-10">
-        <p className="text-[5vh] font-bold">Introduction</p>
-        <p className="text-[3vh] mt-2 text-white px-40 mb-[3vh] font-semibold">With the rapid advancement of deepfake technology, distinguishing between authentic and
-manipulated media has become increasingly difficult. Deepfakes pose serious threats, from
-spreading misinformation to eroding trust in digital content. To address this, we developed
-TrueSight, a system that not only detects deepfakes with high accuracy using advanced AI models
-but also provides a detailed report, explaining the exact reasons why a video is classified as real or
-fake.
-Below are a few questions that provide deeper insights into the various models we have
-implemented.</p>
-        {getItems().map((item, index) => (
-          <div
-            key={index}
-            className={`flex font-suse border-b-4 border-white py-6 w-full max-w-[80vw] ${
-              index % 2 === 0 ? "flex-row-reverse" : "flex-row"
-            }`}
-          >
-            <div className="flex-1">
-              <h2 className="text-[5vh] font-bold">{item.head}</h2>
-              <p className="text-[3vh] mt-2 text-yellow-400 font-semibold">{item.info}</p>
-            </div>
-            <div className="flex-none w-[30%] px-6">
-              <img src="./guy.png" alt="Illustration" className="w-full h-[30vh] object-cover" />
-            </div>
-          </div>
-        ))}
+        <p className="text-[5vh] font-bold text-[#70B5ED]">Application Summary: User Focus Tracker</p>
+        <p className="text-[3vh] mt-2 text-[#70B5ED] px-40 mb-[3vh] font-semibold">
+          The User Focus Tracker is an innovative application designed to monitor and analyze user focus levels
+          during various tasks. By leveraging advanced tracking techniques, the application provides insights
+          into user engagement and concentration, helping individuals optimize their productivity and achieve
+          their goals.
+        </p>
+
+        <h2 className="text-[4vh] font-bold text-[#70B5ED]">Key Features:</h2>
+        <ul className="text-[#70B5ED] text-[3vh] mt-2 px-40 mb-[3vh] font-semibold list-disc">
+          <li><strong>Real-Time Focus Monitoring:</strong> Continuously tracks user attention through integrated camera and audio analysis, identifying periods of high and low focus.</li>
+          <li><strong>User-Friendly Interface:</strong> Intuitive dashboard that visualizes focus data through charts and graphs, making it easy for users to understand their focus patterns over time.</li>
+          <li><strong>Focus Analytics:</strong> Provides detailed reports on focus trends, including average focus duration, peak focus times, and distractions encountered during tasks.</li>
+          <li><strong>Custom Alerts and Notifications:</strong> Users can set personalized alerts to remind them to refocus or take breaks when attention levels drop below a certain threshold.</li>
+          <li><strong>Goal Setting and Tracking:</strong> Allows users to set specific focus-related goals and track their progress, fostering a proactive approach to managing attention.</li>
+          <li><strong>Privacy and Data Security:</strong> Ensures user privacy by implementing strict data protection measures and giving users full control over their data.</li>
+        </ul>
+
+        <h2 className="text-[4vh] font-bold text-[#70B5ED]">Use Cases:</h2>
+        <ul className="text-[#70B5ED] text-[3vh] mt-2 px-40 mb-[3vh] font-semibold list-disc">
+          <li>Ideal for students seeking to improve study habits and concentration during classes.</li>
+          <li>Beneficial for professionals aiming to enhance productivity in the workplace.</li>
+          <li>Useful for researchers studying attention spans and focus-related behaviors.</li>
+        </ul>
       </div>
+
+      <Footer />
     </div>
   );
 };

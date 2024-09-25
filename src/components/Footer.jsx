@@ -4,12 +4,12 @@ function Footer() {
     className="flex items-center justify-center text-white max-h-[13rem] h-[35vh] border-t border-[#70B5ED] ">
       <div className="container flex-col items-center justify-around flex-1">
         <a href="/">
-          <p className="text-center">FocusFlow</p>
+          <p className="text-center">TrueSight</p>
         </a>
 
         <a href="/">
           <p className="flex flex-col items-center justify-center my-4">
-            &copy; 2024 Your Company Name. All rights reserved.
+            &copy; 2024 TrueSight. All rights reserved.
           </p>
         </a>
       </div>
