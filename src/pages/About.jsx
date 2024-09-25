@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../components/Navbar";
+import {Navbar} from "../components/Navbar";
 import "../index.css";
 
 const About = () => {
@@ -60,14 +60,14 @@ const About = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full about overflow-hidden">
+    <div className="flex flex-col w-full h-full overflow-hidden about">
       <Navbar />
 
-      <div className="flex flex-col justify-center items-center h-1/5 font-protest border-b-8 border-t-8 border-white w-full pt-16">
+      <div className="flex flex-col items-center justify-center w-full pt-16 border-t-8 border-b-8 border-white h-1/5 font-protest">
         <h1 className="text-white text-[12vh]">About Us</h1>
       </div>
 
-      <div className="flex flex-col items-center py-10 w-full">
+      <div className="flex flex-col items-center w-full py-10">
         <p className="text-[5vh] font-bold">Introduction</p>
         <p className="text-[3vh] mt-2 text-white px-40 mb-[3vh] font-semibold">With the rapid advancement of deepfake technology, distinguishing between authentic and
 manipulated media has become increasingly difficult. Deepfakes pose serious threats, from
