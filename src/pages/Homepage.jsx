@@ -56,14 +56,14 @@ export function Homepage() {
           </div>
 
           <p className="text-3xl">
-            Trust What You See and Hear{" "}
-            <span className="text-3xl text-[#70B5ED]">Focus Monitoring</span>
+            Trust What {" "}
+            <span className="text-3xl text-[#70B5ED]">You See and Hear</span>
           </p>
         </div>
         <div className="impImage bg-[#111729] flex justify-center  items-center text-white max-w-[90%] ">
           <p className="ml-5 text-3xl max-w-[64%] text-wrap">
-            Detect Deepfakes, Protect Authenticity{" "}
-            <span className="text-3xl text-[#70B5ED]">Focus Monitoring</span>
+            Detect Deepfakes, {" "}
+            <span className="text-3xl text-[#70B5ED]">Protect Authenticity</span>
           </p>
           <div
             style={{ height: "12rem", width: "12rem" }}
@@ -96,8 +96,8 @@ export function Homepage() {
           </div>
 
           <p className="ml-5 text-3xl max-w-[64%] text-wrap">
-            Beyond the Surface: Audio and Video Authenticity{" "}
-            <span className="text-3xl text-[#70B5ED]">Focus Monitoring</span>
+            Beyond the Surface: {" "}
+            <span className="text-3xl text-[#70B5ED]">Audio and Video Authenticity</span>
           </p>
         </div>
       </div>
