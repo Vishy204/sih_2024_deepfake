@@ -1,161 +1,159 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Navbar } from "../components/Navbar";
+import Footer from "../components/Footer";
+
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 // Register the necessary Chart.js components
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
-function ResultPage() {
-    const location = useLocation();
-    const navigate = useNavigate();
+function AudioPage() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    // Extract result, randomArray, metadata, frame_base64, dct_base64, image_base64, total_blinks, irregular_blinks, full_prediction_string, and transcribed_text from location state
-    const {
-        result,
-        randomArray,
-        metadata,
-        prediction,
-        frame_base64,
-        dct_base64,
-        image_base64,
-        total_blinks,
-        irregular_blinks,
-        full_prediction_string,
-        transcribed_text,
-        similarity,micro,freq,gaze,lip,mfcc1_64,mfcc2_64,mfcc3_64
-    } = location.state || { 
-        result: null, 
-        randomArray: [], 
-        metadata: null, 
-        prediction: null,
-        frame_base64: null, 
-        dct_base64: null, 
-        image_base64: null, 
-        total_blinks: null, 
-        irregular_blinks: null,
-        full_prediction_string: null,
-        transcribed_text: null,
-        similarity:null,micro:null,freq:null,gaze:null,lip:null,mfcc1_64:null,mfcc2_64:null,mfcc3_64:null
-    };
+  const {
+    result,
+    metadata,
+    mfcc1_64,
+    mfcc2_64,
+    mfcc3_64,
+    result1,
+    isDeepfake,
+    full_prediction_string,
+    transcribed_text,
+    similarity,
+    lip,
+  } = location.state || {};
 
-    // Debugging - log the result, randomArray, metadata, and images to see what is being passed
-    useEffect(() => {
-        console.log("Result:", result);
-        console.log("Random Array:", randomArray);
-        console.log("Metadata:", metadata);
-        console.log("Frame Image (Base64):", frame_base64);
-        console.log("DCT Image (Base64):", dct_base64);
-        console.log("Tracker Image (Base64):", image_base64);
-        console.log("Total Blinks:", total_blinks);
-        console.log("Irregular Blinks:", irregular_blinks);
-        console.log("Full Prediction String:", full_prediction_string);
-        console.log("Transcribed Text:", transcribed_text);
-    }, [result, randomArray, metadata, frame_base64, dct_base64, image_base64, total_blinks, irregular_blinks, full_prediction_string, transcribed_text]);
+  // Function to convert Base64 string to Data URL
+  const toDataURL = (base64String) => {
+    return `data:image/png;base64,${base64String}`;
+  };
 
-    // Prepare data for the chart
-    const data = {
-        labels: randomArray.map((_, index) => `Point ${index + 1}`),  // Labels for each point on the x-axis
-        datasets: [
-            {
-                label: 'Predictions',
-                data: randomArray,  // Data to plot on the chart
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-            },
-        ],
-    };
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
-    return (
-        <div>
-            <h1>Analysis Results</h1>
-            
-            <p>Meta Data: {metadata ? metadata : 'No metadata available'}</p>
-            <p>Prediction Result: {result ? result : 'No prediction result available'}</p>
-            <p>Total Blinks: {total_blinks !== null ? total_blinks : 'No data available'}</p>
-            <p>Irregular Blinks: {irregular_blinks !== null ? irregular_blinks : 'No data available'}</p>
-            <p>Model Predicted String: {full_prediction_string ? full_prediction_string : 'No data available'}</p>
-            <p>Frequency Predicted Value: {prediction ? prediction : 'No data available'}</p>
-            <p>Transcribed Text: {transcribed_text ? transcribed_text : 'No transcribed text available'}</p>
-            <p>Sync Score: {similarity ? similarity: 'No transcribed text available'}</p>
-            <p>Lipnet Conclusion {lip ? lip: 'No transcribed text available'}</p>
-            <p>Freqnet conclusion: {freq ? freq: 'No transcribed text available'}</p>
-            <p>Microexpresion conclusion:  {micro ? micro: 'No transcribed text available'}</p>
-            <p>GazeTracker: {gaze ? gaze: 'No transcribed text available'}</p>
+  return (
+    <>
+      <Navbar />
+      <div className="p-3">
+        <div className="flex flex-col content-center justify-center">
+          {/* Meta Data */}
+          <div className="content-center flex justify-center mx-2 my-3 border shadow-md bg-[#D9D9D9] rounded-md p-4">
+            <div className="max-w-sm overflow-hidden bg-[#D9D9D9] flex flex-col justify-center content-center ml-6">
+              <h1 className="font-extrabold text-center text-black">
+                Meta Data
+              </h1>
+              <p className="m-3 font-semibold text-center">
+                {metadata || "No metadata available"}
+              </p>
+            </div>
+          </div>
 
-            {/* Show the frame image if available */}
-            {frame_base64 && (
-                <div>
-                    <h2>Frame Image (Predicted Deepfake Frame)</h2>
-                    <img src={`data:image/png;base64,${frame_base64}`} alt="Predicted Deepfake Frame" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
+          {/* MFCC Graphs */}
+          <div>
+            <div className="grid grid-cols-1 gap-4 mb-4">
+              <div className="border shadow-md bg-[#D9D9D9] rounded-md p-4">
+                <h1 className="font-extrabold text-center text-black">
+                  MFCC 1
+                </h1>
+                {mfcc1_64 ? (
+                  <img
+                    src={toDataURL(mfcc1_64)} // Use the toDataURL function
+                    alt="MFCC 1"
+                    className="mx-auto"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                ) : (
+                  <p className="text-center">No image available for MFCC 1</p>
+                )}
+              </div>
+
+              <div className="border shadow-md bg-[#D9D9D9] rounded-md p-4">
+                <h1 className="font-extrabold text-center text-black">
+                  MFCC 2
+                </h1>
+                {mfcc2_64 ? (
+                  <img
+                    src={toDataURL(mfcc2_64)} // Use the toDataURL function
+                    alt="MFCC 2"
+                    className="mx-auto"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                ) : (
+                  <p className="text-center">No image available for MFCC 2</p>
+                )}
+              </div>
+
+              <div className="border shadow-md bg-[#D9D9D9] rounded-md p-4">
+                <h1 className="font-extrabold text-center text-black">
+                  MFCC 3
+                </h1>
+                {mfcc3_64 ? (
+                  <img
+                    src={toDataURL(mfcc3_64)} // Use the toDataURL function
+                    alt="MFCC 3"
+                    className="mx-auto"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                ) : (
+                  <p className="text-center">No image available for MFCC 3</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Result Section */}
+          <div className="flex flex-col content-center justify-center my-3 mx-auto w-[60%] min-h-[40vh] rounded-md bg-[#D9D9D9] mb-4 p-4">
+            <h1 className="text-lg font-semibold text-center underline">
+              Result
+            </h1>
+            <p className="px-6 font-medium leading-relaxed text-center">
+              {result1 || "No result available"}
+            </p>
+
+            {similarity && (
+              <>
+                <p className="text-center">
+                  Lip-Audio Consistency Score: {similarity}
+                </p>
+                <p className="text-center">
+                  Audio actually spoken in the Video: {transcribed_text}
+                </p>
+                <p className="text-center">Conclusion: {lip}</p>
+              </>
             )}
-
-            {/* Show the DCT plot if available */}
-            {dct_base64 && (
-                <div>
-                    <h2>DCT Plot</h2>
-                    <img src={`data:image/png;base64,${dct_base64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
-            {mfcc1_64 && (
-                <div>
-                    <h2>DCT Plot</h2>
-                    <img src={`data:image/png;base64,${mfcc1_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
-            {mfcc2_64 && (
-                <div>
-                    <h2>DCT Plot</h2>
-                    <img src={`data:image/png;base64,${mfcc2_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
-            {mfcc3_64 && (
-                <div>
-                    <h2>DCT Plot</h2>
-                    <img src={`data:image/png;base64,${mfcc3_64}`} alt="DCT Plot" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
-
-            {/* Show the eye tracker image if available */}
-            {image_base64 && (
-                <div>
-                    <h2>Eye Tracker Plot</h2>
-                    <img src={`data:image/png;base64,${image_base64}`} alt="Tracker Plot" style={{ maxWidth: '100%', height: 'auto' }} />
-                </div>
-            )}
-
-            {/* Show graph only if randomArray has data */}
-            {randomArray.length > 0 ? (
-                <div>
-                    <h2>Prediction Graph</h2>
-                    <Line data={data} />
-                </div>
-            ) : (
-                <p>No prediction data to display.</p>
-            )}
-
-            <button onClick={() => navigate('/')}>Go Back</button>
+          </div>
         </div>
-    );
+      </div>
+      <Footer />
+    </>
+  );
 }
 
-export default ResultPage;
+export default AudioPage;

@@ -24,6 +24,7 @@ ChartJS.register(
 
 const LineChart = ({ data }) => {
   // Generate labels for x-axis based on the length of the data
+  console.log(data);
   const labels = data.map((_, i) => `Frame ${i + 1}`);
 
   // Chart.js dataset
@@ -77,10 +78,10 @@ const LineChart = ({ data }) => {
   };
 
   return (
-  <div className="flex flex-col content-center justify-center w-[50%]  mx-3 my-6">
-  <Line data={chartData} options={options} />;
-  </div>
-  )
+    <div className="flex flex-col content-center justify-center w-full h-full  mx-2 my-6">
+      <Line className="mx-auto" data={chartData} options={options} />;
+    </div>
+  );
 };
 
 export default LineChart;

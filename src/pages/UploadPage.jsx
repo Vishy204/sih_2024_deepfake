@@ -81,32 +81,48 @@ function UploadPage() {
         result1,
       } = response.data;
 
-      // Navigate to ResultPage with the result and other details
-      navigate("/result", {
-        state: {
-          result,
-          randomArray: random_array || [],
-          metadata,
-          prediction,
-          frame_base64,
-          dct_base64,
-          image_base64,
-          total_blinks,
-          irregular_blinks,
-          full_prediction_string,
-          transcribed_text,
-          similarity,
-          micro,
-          freq,
-          gaze,
-          lip,
-          mfcc1_64,
-          mfcc2_64,
-          mfcc3_64,
-          final_result,
-          result1,
-        },
-      });
+      // Determine redirect based on file type
+      if (audioFile && !videoFile) {
+        navigate("/result/audio", {
+          state: {
+            result,
+            randomArray: random_array || [],
+            transcribed_text,
+            similarity,
+            mfcc1_64,
+            mfcc2_64,
+            mfcc3_64,
+            final_result,
+            result1,
+            metadata,
+          },
+        });
+      } else if (videoFile) {
+        navigate("/result", {
+          state: {
+            result,
+            randomArray: random_array || [],
+            metadata,
+            mfcc1_64,
+            mfcc2_64,
+            mfcc3_64,
+            prediction,
+            frame_base64,
+            dct_base64,
+            image_base64,
+            total_blinks,
+            irregular_blinks,
+            full_prediction_string,
+            micro,
+            freq,
+            gaze,
+            lip,
+            final_result,
+            similarity,
+            transcribed_text,
+          },
+        });
+      }
     } catch (error) {
       console.error("Error uploading the files:", error);
     }
