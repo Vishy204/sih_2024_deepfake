@@ -32,7 +32,6 @@ function AudioPage() {
   const navigate = useNavigate();
 
   const {
-    result,
     metadata,
     mfcc1_64,
     mfcc2_64,
